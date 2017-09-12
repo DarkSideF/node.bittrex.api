@@ -215,7 +215,16 @@ var NodeBittrexApi = function() {
           }
 
           if (result === true) {
-            ((opts.verbose) ? console.log('Subscribed to ' + market) : '');
+            ((opts.verbose) ? console.log('Subscribed trades of the market ' + market) : '');
+          }
+        });
+        wsclient.call('CoreHub', 'QueryExchangeState', market).done(function(err, result) {
+          if (err) {
+            return console.error(err);
+          }
+
+          if (result === true) {
+            ((opts.verbose) ? console.log('Subscribed to query exchange state of the market ' + market) : '');
           }
         });
       });
